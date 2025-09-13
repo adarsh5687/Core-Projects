@@ -1,44 +1,81 @@
-# EE312-Microprocessor-Project
+# Servo Motor Control Using LDRs
 
-This is an 8-bit microprocessor that is designed to implement a set of 16 instructions as per the project specifications.</br>
+This project controls the position of a servo motor based on the light intensity detected by two LDR (Light Dependent Resistor) sensors. It automatically adjusts the servo to track the brighter light source.
 
-## Project specifications
-![image](https://github.com/PuttaSravankumarReddy/EE312-Microprocessor-Project/assets/109052077/6fb0466f-80e3-4c68-a232-1f594bf53ab9)
+---
+
+##  Theory of this Project
+
+The project is based on the principle of a light-following mechanism:
+- Two LDRs are placed such that they sense light from different directions.
+- The difference in light intensity from the two LDRs is measured.
+- Depending on which side is brighter, the servo motor rotates to align with the light.
+
+### Theory in Images:
+![Theory 1](images/theory1.png)
+*Light sensing using LDRs.*
+
+![Theory 2](images/theory2.png)
+*Error calculation based on the difference in LDR readings.*
+
+![Theory 3](images/theory3.png)
+*Servo adjusts its position according to the light direction.*
+
+---
+
+##  Components Used
+
+- 1 × Arduino board
+- 1 × Servo motor
+- 2 × LDR sensors
+- 2 × Resistors (10kΩ, for voltage divider)
+- Breadboard and jumper wires
+- Power supply
+
+### Components in Images:
+![Components 1](images/components1.png)
+*All electronic components.*
+
+![Components 2](images/components2.png)
+*Close-up of the servo and LDRs.*
+
+---
+
+## 🔗 Connections & Circuit
+
+The two LDRs are connected to the analog pins of the Arduino. A voltage divider is used with each LDR to provide a measurable voltage. The servo motor signal wire is connected to a PWM-capable digital pin.
+
+### Circuit in Images:
+![Circuit 1](images/connection1.png)
+*Wiring diagram of the setup.*
+
+![Circuit 2](images/connection2.png)
+*Breadboard connection of the circuit.*
+
+![Circuit 3](images/connection3.png)
+
+![Circuit 4](images/connection4.png)
+---
+
+##  How the Code Works
+
+- The Arduino continuously reads analog values from the east and west LDRs.
+- If the difference between them exceeds a threshold, the servo motor rotates towards the brighter side.
+- The servo stops when the difference falls below the threshold.
+
+### Code in Images:
+![Code 1](images/codeworks1.png)
+*Reading LDR values and calculating error.*
+
+![Code 2](images/code2.png)
+*Controlling servo position based on error.*
+
+---
+
+## Conclusion
+
+The Solar Maximum Power Tracking System effectively demonstrated how solar energy efficiency can be enhanced using a simple Arduino-based sun-tracking mechanism. By automatically adjusting the panel's orientation based on real-time light intensity from LDR sensors, the system ensures maximum exposure to sunlight throughout the day. This project highlights the potential of embedded systems and renewable energy integration, offering a scalable solution for energy optimization in both small-scale and commercial solar applications.
+
+---
 
 
-
-The whole microprocessor design is divided into 5 parts:
-<ul>
-  <li>Instruction Memory</li>
-  <li>Control Unit(CU)</li>
-  <li>Data Memory</li>
-  <li>Arithmetic Logic Unit(ALU)</li>
-  <li>Multiplexers(MUX)</li>
-</ul>
-
-## Working of microprocessor:
-<ul>
-  <li>User writes the instructions to the instruction memory which will be fetched by the Control unit later on.</li>
-  <li>User provides input to Data memory which is required for performing the operation after the control unit decodes the instruction.</li>
-  <li>Control unit fetches instructions one-by-one and decodes them to perform operations.</li>
-  <li>Now, the Control unit performs operations on the data present in the data memory with the help of ALU.</li>
-  <li>Once the operation is finished in the ALU, then the required result will be obtained as the output.</li>
-</ul>
-
-## Input handling:
-<ul>
-<li>As mentioned in the question, a sign extension is used for handling the inputs.</li>
-<li>Because the provided input is of either 2 bits or 4 bits but we need an 8-bit input based on the register size. So, we used a 6-bit sign extension in the case of 2-bit input and a 4-bit sign extension in the case of 4-bit input.</li>
-<li>Eg: 01 input is taken as 00000001 and 1001 input is taken as 11111001.</li>
-</ul>
-
-## Microprocessor Architecture
-![architecture microprocessor](https://github.com/shashankAdepu/EE312-Microprocessor-Project/assets/84031342/815bf6cc-da8a-4ea7-ad9b-b11250015779)
-
-
-
-## State Diagram
-This is a state diagram that shows the process of obtaining output based on the given input.
-![State diagram](https://github.com/Amit-Thomas/EE312-Microprocessor-Project/blob/main/state%20diagram.png)
-
-This is about the 8-bit microprocessor which was designed from scratch using Verilog focusing on architecture. Proper testing and debugging were done by using the provided set of input instructions.
